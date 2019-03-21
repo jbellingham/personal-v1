@@ -1,0 +1,18 @@
+body.app {
+  background-color: #041931;
+  color: #e3f1ff;
+  font-family: "Open Sans", sans-serif;
+
+  #introductionText {
+    font-family: "Fira Mono", monospace;
+  }
+  .code-text {
+    color: #e3f1ff;
+  }
+  .code {
+    margin-bottom: 0;
+  }
+  .code-indented {
+    margin-left: 2em;
+  }
+}
