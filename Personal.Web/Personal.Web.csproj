@@ -25,9 +25,11 @@
         <Content Include="ClientApp\src\components\Console.js" />
         <Content Include="ClientApp\src\components\ConsoleLine.js" />
         <Content Include="ClientApp\src\components\Position.js" />
+        <Content Include="ClientApp\src\components\Stack.js" />
         <Content Include="ClientApp\src\components\WorkExperience.js" />
         <Content Include="ClientApp\src\scss\main.scss" />
         <Content Include="ClientApp\src\store\Positions.js" />
+        <Content Include="ClientApp\src\store\Stack.js" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>

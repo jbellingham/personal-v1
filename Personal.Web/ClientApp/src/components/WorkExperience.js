@@ -1,5 +1,5 @@
 import React from "react";
-import { Position } from "./Position";
+import Position from "./Position";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../store/Positions";
 import { connect } from "react-redux";
@@ -34,6 +34,7 @@ class WorkExperienceComponent extends React.Component {
             <Position
               key={`${_.companyName}-${_.startDate}`}
               positionTitle={_.title}
+              positionId={_.positionId}
               companyName={_.companyName}
               startDate={_.startDate}
               endDate={_.endDate}

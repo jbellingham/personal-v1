@@ -24,10 +24,9 @@ namespace Personal.Controllers
         public async Task<IActionResult> Index()
         {
             var positions = await this.DataContext.JobPositions
-                .Include(_ => _.Stack)
-                    .ThenInclude(_ => _.Technology)
                 .Select(_ => _mapper.Map<JobPositionViewModel.Position>(_))
                 .ToListAsync();
+            
             var model = new JobPositionViewModel
             {
                 Positions = positions

@@ -9,22 +9,9 @@ namespace Personal.ViewModels.JobPosition
         public AutoMapperProfile()
         {
             this.CreateMap<Domain.Models.JobPosition, JobPositionViewModel.Position>()
+                .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate.ToShortDateString()))
-                .ForMember(dest => dest.EndDate, opt => opt.MapFrom<EndDateMapper>())
-                .ForMember(dest => dest.Stack, opt => opt.MapFrom<TechStackMapper>());
-        }
-    }
-
-    public class TechStackMapper : IValueResolver<Domain.Models.JobPosition, JobPositionViewModel.Position, List<JobPositionViewModel.Technology>>
-    {
-        public List<JobPositionViewModel.Technology> Resolve(Domain.Models.JobPosition source, JobPositionViewModel.Position destination, List<JobPositionViewModel.Technology> destMember, ResolutionContext context)
-        {
-            return source.Stack
-                .OrderBy(_ => _.Technology.Ordinal)
-                .Select(_ => new JobPositionViewModel.Technology
-                {
-                    Name = _.Technology.Name
-                }).ToList();
+                .ForMember(dest => dest.EndDate, opt => opt.MapFrom<EndDateMapper>());
         }
     }
 

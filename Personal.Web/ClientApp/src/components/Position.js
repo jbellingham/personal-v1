@@ -1,31 +1,52 @@
 import React from "react"
+import Stack from "./Stack";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../store/Stack";
 
-export class Position extends React.Component {
-  static displayName = Position.name
+class PositionComponent extends React.Component {
+  static displayName = PositionComponent.name
+
+  componentDidMount() {
+    // This method is called when the component is first added to the document
+    this.ensureDataFetched();
+  }
+
+  componentDidUpdate() {
+    // This method is called when the route parameters change
+    this.ensureDataFetched();
+  }
+
+  ensureDataFetched() {
+    const positionId = this.props.positionId || null;
+    this.props.getStackItems(positionId);
+  }
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       positionTitle: "",
+      positionId: "",
       companyName: "",
       location: "",
       startDate: "",
       endDate: "",
       duties: null,
-      stack: null,
+      stack: null
     }
   }
 
   render() {
     const {
+      positionId,
       positionTitle,
       companyName,
       startDate,
       endDate,
       duties,
       location,
-      stack,
-    } = this.props
+      stack
+    } = this.props;
     return (
       <div className="row" style={{ marginBottom: "2em" }}>
         <div className="wrapper" style={{ width: "900px" }}>
@@ -43,26 +64,18 @@ export class Position extends React.Component {
                 <p>{duties[0]}</p>
               ))}
           </ul>
-          {stack && (
-            <div className="stack-container">
-              {stack.map(item => (
-                <span
-                  key={`${location}-${item.name}`}
-                  className="stack-item"
-                  style={{
-                    border: "1px solid blue",
-                    borderRadius: "5px",
-                    marginRight: "0.5em",
-                    padding: "0.2em",
-                  }}
-                >
-                  {item.name}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="stack-container">
+            <Stack stack={stack} positionId={positionId}/>
+          </div>
         </div>
       </div>
     )
   }
 }
+
+const Position = connect(
+    state => state.stack,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(PositionComponent);
+
+export default Position;
