@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { WorkExperience } from "./WorkExperience";
+import WorkExperience from "./WorkExperience";
 import { Console } from "./Console";
+import { actionCreators } from "../store/Positions";
+import {bindActionCreators} from "redux";
 
 const Home = props => (
     <div>
@@ -28,4 +30,7 @@ const Home = props => (
     </div>
 );
 
-export default connect()(Home);
+export default connect(
+    null,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(Home);

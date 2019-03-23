@@ -14,12 +14,6 @@ export class Console extends React.Component {
           borderRadius: "5px",
         }}
       >
-        <ConsoleLine lineTitle="let jesse = new Jesse()" />
-        <ConsoleLine />
-        <ConsoleLine
-          lineTitle="jesse.name"
-          lineDescription="Jesse Bellingham"
-        />
         <ConsoleLine lineTitle="jesse.location" lineDescription="Melbourne" />
         <ConsoleLine
           lineTitle="jesse.education"

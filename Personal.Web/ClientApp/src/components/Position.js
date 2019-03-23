@@ -47,6 +47,7 @@ export class Position extends React.Component {
             <div className="stack-container">
               {stack.map(item => (
                 <span
+                  key={`${location}-${item.name}`}
                   className="stack-item"
                   style={{
                     border: "1px solid blue",
@@ -55,7 +56,7 @@ export class Position extends React.Component {
                     padding: "0.2em",
                   }}
                 >
-                  {item}
+                  {item.name}
                 </span>
               ))}
             </div>
