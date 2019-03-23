@@ -15,6 +15,7 @@ namespace Personal.Domain
     public class DataContext : IdentityDbContext<ApplicationIdentityUser, ApplicationIdentityRole, Guid>
     {      
         public virtual DbSet<JobPosition> JobPositions { get; set; }
+        public virtual DbSet<Technology> Technologies { get; set; }
 
         private readonly string _customConnection;
         private readonly IContainer _services;
@@ -35,18 +36,6 @@ namespace Personal.Domain
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // The following allows us to provide a custom connection
-            // string through "StructureMap's Arguments at Runtime".
-            //
-            // ie: services.With("customConnection")
-            //             .EqualTo("server=foo;username-bar;etc...")
-            //             .GetInstance<DataContext>();
-            //
-            // see: http://structuremap.github.io/resolving/passing-arguments-at-runtime/
-            //
-            // Also keep in mind using the same arguments as runtime support
-            // your still welcome to completely redfine a brand new set of
-            // DbContextOptions if need be.
             if (!string.IsNullOrWhiteSpace(_customConnection))
             {
                 optionsBuilder.UseNpgsql(_customConnection, o => o.UseNetTopologySuite());
@@ -56,8 +45,7 @@ namespace Personal.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<JobPosition>();
-            modelBuilder.Entity<ApplicationIdentityUser>();
+            AddModelEntities(modelBuilder);
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
@@ -70,6 +58,14 @@ namespace Personal.Domain
                     MapColumnNames(property);
                 }
             }
+        }
+
+        private static void AddModelEntities(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PositionTechnology>().HasKey(_ => new { _.PositionId, _.TechnologyId });
+            modelBuilder.Entity<JobPosition>();
+            modelBuilder.Entity<Technology>();
+            modelBuilder.Entity<ApplicationIdentityUser>();
         }
 
         private void MapColumnNames(IMutableProperty property)
