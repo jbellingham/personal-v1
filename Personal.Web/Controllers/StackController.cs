@@ -18,14 +18,14 @@ namespace Personal.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IActionResult> Index(Guid positionId)
+        public async Task<IActionResult> Index()
         {
-            var position = await this.DataContext.JobPositions
+            var positions = await this.DataContext.JobPositions
                 .Include(_ => _.Stack)
-                    .ThenInclude(_ => _.Technology)
-                .SingleOrDefaultAsync(_ => _.Id == positionId);
+                .ThenInclude(_ => _.Technology)
+                .ToListAsync();
 
-            var model = _mapper.Map<StackViewModel>(position.Stack);
+            var model = _mapper.Map<StackViewModel>(positions);
             return Ok(model);
         }
     }

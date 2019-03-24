@@ -1,11 +1,25 @@
 import React from "react"
-import Stack from "./Stack";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { actionCreators } from "../store/Stack";
+import { Stack } from "./Stack";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../store/Stack";
 
-class PositionComponent extends React.Component {
-  static displayName = PositionComponent.name
+export class PositionComponent extends React.Component {
+  static displayName = PositionComponent.name;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      positionTitle: "",
+      currentPositionId: "",
+      companyName: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      duties: null,
+      stack: []
+    }
+  }
 
   componentDidMount() {
     // This method is called when the component is first added to the document
@@ -18,35 +32,23 @@ class PositionComponent extends React.Component {
   }
 
   ensureDataFetched() {
-    const positionId = this.props.positionId || null;
-    this.props.getStackItems(positionId);
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      positionTitle: "",
-      positionId: "",
-      companyName: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      duties: null,
-      stack: null
-    }
+    this.props.getStackItems();
   }
 
   render() {
     const {
-      positionId,
       positionTitle,
+      currentPositionId,
       companyName,
       startDate,
       endDate,
       duties,
       location,
-      stack
+      positions
     } = this.props;
+    
+    const position = positions.find(_ => _.positionId === currentPositionId);
+    const stack = position && position.stack;
     return (
       <div className="row" style={{ marginBottom: "2em" }}>
         <div className="wrapper" style={{ width: "900px" }}>
@@ -65,7 +67,7 @@ class PositionComponent extends React.Component {
               ))}
           </ul>
           <div className="stack-container">
-            <Stack stack={stack} positionId={positionId}/>
+            <Stack stack={stack} />
           </div>
         </div>
       </div>

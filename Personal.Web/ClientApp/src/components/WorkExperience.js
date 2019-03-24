@@ -34,13 +34,12 @@ class WorkExperienceComponent extends React.Component {
             <Position
               key={`${_.companyName}-${_.startDate}`}
               positionTitle={_.title}
-              positionId={_.positionId}
+              currentPositionId={_.positionId}
               companyName={_.companyName}
               startDate={_.startDate}
               endDate={_.endDate}
               location={_.location}
               duties={_.duties}
-              stack={_.stack}
             />
           ))}
         </div>

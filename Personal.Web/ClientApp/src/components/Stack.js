@@ -3,27 +3,30 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../store/Stack";
 
-class StackComponent extends React.Component {
-    static displayName = StackComponent.name
+export class Stack extends React.Component {
+    static displayName = Stack.name;
 
     constructor(props) {
         super(props);
-        this.state = {
-            stack: null,
-        }
+        // this.state = {
+        //     currentPositionId: "",
+        //     isLoading: false,
+        //     stack: [],
+        // }
     }
 
     render() {
         const {
-            positionId,
-            stack,
-            newStackItem
-        } = this.props
+            currentPositionId,
+            isLoading,
+            stack
+        } = this.props;
+        
         return <React.Fragment>
             {stack &&
             stack.map(item => (
                 <span
-                    key={`${positionId}-${item.name}`}
+                    key={`${currentPositionId}-${item.name}`}
                     className="stack-item"
                     style={{
                         border: "1px solid blue",
@@ -35,43 +38,35 @@ class StackComponent extends React.Component {
                 {item.name}
               </span>
             ))}
-            <button
-                key={`${positionId}-create-stack-item`}
-                onClick={this.newStackItemClicked()}
-                className="stack-item btn btn-outline-primary"
-                style={{
-                    color: '#e3f1ff',
-                    border: "1px solid blue",
-                    borderRadius: "5px",
-                    marginRight: "0.5em",
-                    padding: "0.2em",
-                }}
-            > + Add
-            </button>
-            {this.props.addingStackItem &&
+            {!this.props.isAddingStackItem &&
+                <button
+                    key={`${currentPositionId}-create-stack-item`}
+                    onClick={() => this.props.addStackItem(currentPositionId)}
+                    className="stack-item btn btn-outline-primary"
+                    style={{
+                        color: '#e3f1ff',
+                        border: "1px solid blue",
+                        borderRadius: "5px",
+                        marginRight: "0.5em",
+                        padding: "0.2em",
+                    }}
+                > + Add
+                </button>}
+            {this.props.isAddingStackItem &&
+                this.props.newStackItemPositionId === currentPositionId &&
                 <input type="text"
-                key={`${positionId}-new-item`}
+                key={`${currentPositionId}-new-item`}
                 className="stack-item"
                 style={{
                     border: "1px solid blue",
                     borderRadius: "5px",
                     marginRight: "0.5em",
                     padding: "0.2em",
+                    maxWidth: "5em"
                 }}
                 >
                 </input>
             }
         </React.Fragment>
     }
-
-    newStackItemClicked() {
-        
-    }
 }
-
-const Stack = connect(
-    state => state.stack,
-    dispatch => bindActionCreators(actionCreators, dispatch)
-)(StackComponent);
-
-export default Stack;

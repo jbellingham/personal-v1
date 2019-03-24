@@ -9,18 +9,26 @@ namespace Personal.ViewModels.Stack
     {
         public AutoMapperProfile()
         {
-            this.CreateMap<ICollection<PositionTechnology>, StackViewModel>()
-                .ForMember(dest => dest.Items, opt => opt.MapFrom<StackItemResolver>());
+            this.CreateMap<ICollection<Domain.Models.JobPosition>, StackViewModel>()
+                .ForMember(dest => dest.Positions, opt => opt.MapFrom<PositionsResolver>());
         }
     }
 
-    public class StackItemResolver : IValueResolver<ICollection<PositionTechnology>, StackViewModel, List<Technology>>
+    public class PositionsResolver : IValueResolver<ICollection<Domain.Models.JobPosition>, StackViewModel, List<StackViewModel.Position>>
     {
-        public List<Technology> Resolve(ICollection<PositionTechnology> source, StackViewModel destination, List<Technology> destMember, ResolutionContext context)
+        public List<StackViewModel.Position> Resolve(
+            ICollection<Domain.Models.JobPosition> source,
+            StackViewModel destination,
+            List<StackViewModel.Position> destMember,
+            ResolutionContext context)
         {
-            return source.Select(_ => new Technology
+            return source.Select(_ => new StackViewModel.Position
             {
-                Name = _.Technology.Name
+                PositionId = _.Id,
+                Stack = _.Stack.Select(s => new Technology
+                {
+                    Name = s.Technology.Name
+                }).ToList()
             }).ToList();
         }
     }
