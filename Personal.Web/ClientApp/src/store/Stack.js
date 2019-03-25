@@ -1,4 +1,5 @@
-import { getStackItemsType, getStackItemsSuccessType, addStackItemType } from "../actions/stack";
+import { getStackItemsType, getStackItemsSuccessType, addStackItemType, saveStackItemType } from "../actions/stack";
+import axios from "axios";
 
 const initialState = { stacks: [], isLoading: false };
 
@@ -14,12 +15,27 @@ export const actionCreators = {
         dispatch({ type: getStackItemsType });
 
         const url = 'api/Stack';
-        const response = await fetch(url);
-        const result = await response.json();
+        const response = (await axios.get(url)).data;
 
-        dispatch({ type: getStackItemsSuccessType, payload: result });
+        dispatch({ type: getStackItemsSuccessType, payload: response });
     },
     addStackItem: positionId => ({ type: addStackItemType, payload: { positionId }}),
+    
+    saveStackItem: (event, positionId) => async (dispatch) => {
+        const value = event.target.value;
+        if (value) {
+            const payload = { positionId, value: value };
+            dispatch({ type: saveStackItemType, payload: payload});
+            await axios({
+                url: 'api/Stack',
+                method: 'POST',
+                data: {
+                    'positionId': payload.positionId,
+                    'value': payload.value
+                }
+            });            
+        }
+    }
 };
 
 export const reducer = (state = initialState, action) => {
@@ -47,7 +63,19 @@ export const reducer = (state = initialState, action) => {
                             isAddingStackItem: true
                         } : _),// action.payload.positionId,
                 // isAddingStackItem: true
-            }
+            };
+        
+        case saveStackItemType:
+            return {
+                ...state,
+                stacks: state.stacks.map(_ =>
+                    _.positionId === action.payload.positionId ?
+                        {
+                            ..._,
+                            stack: [..._.stack, { name: action.payload.value }],
+                            isAddingStackItem: false
+                        } : _)
+            };
     }
 
     return state;

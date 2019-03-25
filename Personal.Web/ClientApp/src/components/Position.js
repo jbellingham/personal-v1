@@ -69,6 +69,7 @@ export class PositionComponent extends React.Component {
             <Stack
                 isAddingStackItem={stackProps && stackProps.isAddingStackItem}
                 addStackItem={this.props.addStackItem}
+                saveStackItem={this.props.saveStackItem}
                 stack={stackProps && stackProps.stack}
                 currentPositionId={currentPositionId}
             />

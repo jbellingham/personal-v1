@@ -6,18 +6,10 @@ import { actionCreators } from "../store/Stack";
 export class Stack extends React.Component {
     static displayName = Stack.name;
 
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     currentPositionId: "",
-        //     isLoading: false,
-        //     stack: [],
-        // }
-    }
-
     render() {
         const {
             addStackItem,
+            saveStackItem,
             isAddingStackItem,
             currentPositionId,
             isLoading,
@@ -65,6 +57,7 @@ export class Stack extends React.Component {
                     padding: "0.2em",
                     maxWidth: "5em"
                 }}
+               onBlur={(e) => saveStackItem(e, currentPositionId)}
                 >
                 </input>
             }

@@ -3,6 +3,11 @@ export const addStackItemType = positionId => ({
     positionId
 });
 
+export const saveStackItemType = positionId => ({
+    type: 'SAVE_STACK_ITEM',
+    positionId
+});
+
 const addStackItemSuccessType = positionId => ({
     type: 'ADD_STACK_ITEM_SUCCESS',
     positionId

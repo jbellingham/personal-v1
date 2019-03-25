@@ -1,11 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Personal.ViewModels.Stack
 {
     public class StackViewModel
     {
-        public List<Position> Positions { get; set; }
+        public class Display
+        {
+            public List<Position> Positions { get; set; }
+        }
+
+        public class Add
+        {
+            [Required]
+            public Guid PositionId { get; set; }
+            [Required]
+            public string Value { get; set; }
+        }
 
         public class Position
         {
