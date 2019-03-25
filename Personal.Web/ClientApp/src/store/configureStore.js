@@ -11,7 +11,7 @@ export default function configureStore (history, initialState) {
     counter: Counter.reducer,
     weatherForecasts: WeatherForecasts.reducer,
     positions: Positions.reducer,
-    stack: Stack.reducer
+    stackState: Stack.reducer
   };
 
   const middleware = [

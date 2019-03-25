@@ -1,5 +1,12 @@
-// export const addStackItemType = 'ADD_STACK_ITEM';
-// const addStackItemSuccessType = 'ADD_STACK_ITEM_SUCCESS';
+export const addStackItemType = positionId => ({
+    type: 'ADD_STACK_ITEM',
+    positionId
+});
+
+const addStackItemSuccessType = positionId => ({
+    type: 'ADD_STACK_ITEM_SUCCESS',
+    positionId
+});
 
 export const getStackItemsType = positionId => ({
     type: "GET_STACK_ITEMS",

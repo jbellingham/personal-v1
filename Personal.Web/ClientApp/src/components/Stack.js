@@ -17,6 +17,8 @@ export class Stack extends React.Component {
 
     render() {
         const {
+            addStackItem,
+            isAddingStackItem,
             currentPositionId,
             isLoading,
             stack
@@ -38,10 +40,10 @@ export class Stack extends React.Component {
                 {item.name}
               </span>
             ))}
-            {!this.props.isAddingStackItem &&
+            {!isAddingStackItem &&
                 <button
                     key={`${currentPositionId}-create-stack-item`}
-                    onClick={() => this.props.addStackItem(currentPositionId)}
+                    onClick={() => addStackItem(currentPositionId)}
                     className="stack-item btn btn-outline-primary"
                     style={{
                         color: '#e3f1ff',
@@ -52,8 +54,7 @@ export class Stack extends React.Component {
                     }}
                 > + Add
                 </button>}
-            {this.props.isAddingStackItem &&
-                this.props.newStackItemPositionId === currentPositionId &&
+            {isAddingStackItem &&
                 <input type="text"
                 key={`${currentPositionId}-new-item`}
                 className="stack-item"

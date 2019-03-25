@@ -49,8 +49,8 @@ class WorkExperienceComponent extends React.Component {
 }
 
 const WorkExperience = connect(
-  state => state.positions,
-  dispatch => bindActionCreators(actionCreators, dispatch)
+    state => state.positions,
+    dispatch => bindActionCreators(actionCreators, dispatch)
 )(WorkExperienceComponent);
 
 export default WorkExperience;

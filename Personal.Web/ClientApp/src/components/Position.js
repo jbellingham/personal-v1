@@ -44,11 +44,10 @@ export class PositionComponent extends React.Component {
       endDate,
       duties,
       location,
-      positions
+      stacks
     } = this.props;
     
-    const position = positions.find(_ => _.positionId === currentPositionId);
-    const stack = position && position.stack;
+    const stackProps = stacks.find(_ => _.positionId === currentPositionId);
     return (
       <div className="row" style={{ marginBottom: "2em" }}>
         <div className="wrapper" style={{ width: "900px" }}>
@@ -67,7 +66,12 @@ export class PositionComponent extends React.Component {
               ))}
           </ul>
           <div className="stack-container">
-            <Stack stack={stack} />
+            <Stack
+                isAddingStackItem={stackProps && stackProps.isAddingStackItem}
+                addStackItem={this.props.addStackItem}
+                stack={stackProps && stackProps.stack}
+                currentPositionId={currentPositionId}
+            />
           </div>
         </div>
       </div>
@@ -76,7 +80,7 @@ export class PositionComponent extends React.Component {
 }
 
 const Position = connect(
-    state => state.stack,
+    state => state.stackState,
     dispatch => bindActionCreators(actionCreators, dispatch)
 )(PositionComponent);
 
