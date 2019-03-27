@@ -8,9 +8,9 @@ export const saveStackItemType = positionId => ({
     positionId
 });
 
-const addStackItemSuccessType = positionId => ({
-    type: 'ADD_STACK_ITEM_SUCCESS',
-    positionId
+export const saveStackItemFailedType = positionId => ({
+   type: 'SAVE_STACK_ITEM_FAILED',
+   positionId 
 });
 
 export const getStackItemsType = positionId => ({

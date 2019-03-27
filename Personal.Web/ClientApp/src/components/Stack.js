@@ -38,7 +38,7 @@ export class Stack extends React.Component {
                     onClick={() => addStackItem(currentPositionId)}
                     className="stack-item btn btn-outline-primary"
                     style={{
-                        color: '#e3f1ff',
+                        color: '#333333',
                         border: "1px solid blue",
                         borderRadius: "5px",
                         marginRight: "0.5em",
@@ -50,6 +50,7 @@ export class Stack extends React.Component {
                 <input type="text"
                 key={`${currentPositionId}-new-item`}
                 className="stack-item"
+                autoFocus={true}
                 style={{
                     border: "1px solid blue",
                     borderRadius: "5px",

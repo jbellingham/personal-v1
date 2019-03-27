@@ -49,11 +49,10 @@ export class PositionComponent extends React.Component {
     
     const stackProps = stacks.find(_ => _.positionId === currentPositionId);
     return (
-      <div className="row" style={{ marginBottom: "2em" }}>
-        <div className="wrapper" style={{ width: "900px" }}>
+        <div className="position-container justify-content-center">
           <h3>{positionTitle}</h3>
           <p>{companyName}</p>
-          <p className="text-light">
+          <p >
             {startDate} - {endDate || "Present"}
           </p>
           <p>{location}</p>
@@ -74,7 +73,6 @@ export class PositionComponent extends React.Component {
                 currentPositionId={currentPositionId}
             />
           </div>
-        </div>
       </div>
     )
   }

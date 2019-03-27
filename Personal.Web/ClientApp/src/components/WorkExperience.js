@@ -25,25 +25,29 @@ class WorkExperienceComponent extends React.Component {
 
     const { positions } = this.props;
     return (
-      <div className="row">
-        <div className="wrapper" style={{ width: "900px" }}>
-          <h1 className="d-flex justify-content-center">
-            ----- Work Experience ------
-          </h1>
+        <div className="panel-inner">
+          <div className="work-experience-header">
+            <h1 style={{ textAlign: "center" }}>
+              Work Experience
+            </h1>
+            <hr />
+          </div>
           {positions && positions.map(_ => (
-            <Position
-              key={`${_.companyName}-${_.startDate}`}
-              positionTitle={_.title}
-              currentPositionId={_.positionId}
-              companyName={_.companyName}
-              startDate={_.startDate}
-              endDate={_.endDate}
-              location={_.location}
-              duties={_.duties}
-            />
+            <div className="content"
+                 key={`${_.companyName}-${_.startDate}`}
+            >
+              <Position
+                positionTitle={_.title}
+                currentPositionId={_.positionId}
+                companyName={_.companyName}
+                startDate={_.startDate}
+                endDate={_.endDate}
+                location={_.location}
+                duties={_.duties}
+              />
+            </div>
           ))}
         </div>
-      </div>
     );
   }
 }

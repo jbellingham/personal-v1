@@ -1,4 +1,10 @@
-import { getStackItemsType, getStackItemsSuccessType, addStackItemType, saveStackItemType } from "../actions/stack";
+import {
+    getStackItemsType,
+    getStackItemsSuccessType,
+    addStackItemType,
+    saveStackItemType,
+    saveStackItemFailedType
+} from "../actions/stack";
 import axios from "axios";
 
 const initialState = { stacks: [], isLoading: false };
@@ -6,7 +12,6 @@ const initialState = { stacks: [], isLoading: false };
 export const actionCreators = {
     getStackItems: () => async (dispatch, getState) => {
         const st = getState().stackState;
-        console.log(st);
         if (st && (st.isLoading || st.stacks.length)) {
             // Don't issue a duplicate request (we already have or are loading the requested data)
             return;
@@ -34,6 +39,9 @@ export const actionCreators = {
                     'value': payload.value
                 }
             });            
+        }
+        else {
+            dispatch({ type: saveStackItemFailedType, payload: { positionId }})
         }
     }
 };
@@ -73,6 +81,16 @@ export const reducer = (state = initialState, action) => {
                         {
                             ..._,
                             stack: [..._.stack, { name: action.payload.value }],
+                            isAddingStackItem: false
+                        } : _)
+            };
+        case saveStackItemFailedType:
+            return {
+                ...state,
+                stacks: state.stacks.map(_ =>
+                    _.positionId === action.payload.positionId ?
+                        {
+                            ..._,
                             isAddingStackItem: false
                         } : _)
             };

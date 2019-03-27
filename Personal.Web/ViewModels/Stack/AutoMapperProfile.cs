@@ -25,10 +25,12 @@ namespace Personal.ViewModels.Stack
             return source.Select(_ => new StackViewModel.Position
             {
                 PositionId = _.Id,
-                Stack = _.Stack.Select(s => new Technology
-                {
-                    Name = s.Technology.Name
-                }).ToList()
+                Stack = _.Stack
+                    .OrderBy(t => t.Technology.Ordinal)
+                    .Select(s => new Technology
+                    {
+                        Name = s.Technology.Name
+                    }).ToList()
             }).ToList();
         }
     }

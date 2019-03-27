@@ -6,7 +6,7 @@ export class Console extends React.Component {
 
   render() {
     return (
-      <div
+      <div className="content console"
         style={{
           backgroundColor: "#383737",
           borderTop: "10px solid #ccc",
@@ -21,7 +21,7 @@ export class Console extends React.Component {
         />
         <ConsoleLine
           lineTitle="jesse.skills"
-          lineDescription=".Net, React.js, Angular, jQuery, PostgreSQL"
+          lineDescription=".Net Core, React.js, Angular, jQuery, PostgreSQL"
         />
         <ConsoleLine
           lineTitle="jesse.interests"

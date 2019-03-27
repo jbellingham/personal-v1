@@ -1,9 +1,8 @@
 body.app {
-  background-color: #041931;
   color: #e3f1ff;
   font-family: "Open Sans", sans-serif;
 
-  #introductionText {
+  .content.console {
     font-family: "Fira Mono", monospace;
   }
   .code-text {
@@ -14,5 +13,52 @@ body.app {
   }
   .code-indented {
     margin-left: 2em;
+  }
+  
+  .panel-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+  .work-experience {
+    background-color: #ddd;
+    padding-top: 5em;
+    color: #333333;
+  }
+  
+  .about-me {
+    background-color: #4a5365;
+  }
+  
+  .header-name {
+    margin: 1em auto;
+    color: #333333;
+  }
+  
+  .work-experience-header {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .position-container {
+    margin-top: 2em;
+  }
+  
+  .name-header {
+    text-align: center;
+    font-weight: 900;
+    font-size: 60px;
+  }
+  
+  .header-container {
+    background-color: #fafafa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 }

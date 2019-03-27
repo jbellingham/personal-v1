@@ -7,26 +7,24 @@ import {bindActionCreators} from "redux";
 
 const Home = props => (
     <div>
-        <div style={{ marginBottom: "5em" }}>
-            <div className="row justify-content-center">
-                <div className="wrapper" style={{ width: "900px" }}>
-                    <p
-                        className="d-flex justify-content-center"
-                        style={{ color: "#00FF00" }}
-                    >
-                        Hello World!
-                    </p>
-                    <h1
-                        className="d-flex justify-content-center"
-                        style={{ color: "grey", marginBottom: "5em" }}
-                    >
-                        I build web applications.
-                    </h1>
-                    <Console />
-                </div>
+        <div className="about-me">
+            <div className="panel-inner" style={{ padding: "8em 0" }}>
+                <p style={{ textAlign: "center", fontSize:"20px" }}>
+                    Hello World!
+                </p>
+                <h1 className="name-header" >
+                    My name is Jesse
+                </h1>
+                <h2
+                    style={{ textAlign: "center", color: "grey", marginBottom: "3em" }} >
+                    I build web applications.
+                </h2>
+                <Console />
             </div>
         </div>
-        <WorkExperience />
+        <div id="workHistory" className="work-experience">
+            <WorkExperience />
+        </div>
     </div>
 );
 
