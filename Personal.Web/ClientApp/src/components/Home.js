@@ -8,7 +8,7 @@ import {bindActionCreators} from "redux";
 const Home = props => (
     <div>
         <div className="about-me">
-            <div className="panel-inner" style={{ padding: "8em 0" }}>
+            <div className="panel-inner" style={{ padding: "8em 1em" }}>
                 <p style={{ textAlign: "center", fontSize:"20px" }}>
                     Hello World!
                 </p>
