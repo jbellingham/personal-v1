@@ -14,18 +14,19 @@ export class Console extends React.Component {
           borderRadius: "5px",
         }}
       >
-        <ConsoleLine lineTitle="jesse.location" lineDescription="Melbourne" />
+        <ConsoleLine lineTitle="jesse.origin" lineDescription="New Zealand"/>
+        <ConsoleLine lineTitle="jesse.currentLocation" lineDescription="Melbourne, Australia" />
         <ConsoleLine
           lineTitle="jesse.education"
           lineDescription="Bachelor of Information Technology (Software Development)"
         />
         <ConsoleLine
           lineTitle="jesse.skills"
-          lineDescription=".Net Core, React.js, Angular, jQuery, PostgreSQL"
+          lineDescription="['.Net Core', 'React.js', 'Angular', 'jQuery', 'PostgreSQL']"
         />
         <ConsoleLine
           lineTitle="jesse.interests"
-          lineDescription="Coding, gaming, live music, snowboarding, powerlifting"
+          lineDescription="['Coding', 'gaming', 'live music', 'snowboarding', 'powerlifting']"
         />
         <ConsoleLine
           lineTitle="jesse.email"
