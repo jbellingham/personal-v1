@@ -41,7 +41,7 @@ export class Stack extends React.Component {
                         color: '#333333',
                         border: "1px solid blue",
                         borderRadius: "5px",
-                        marginRight: "0.5em",
+                        marginBottom: "0.25em",
                         padding: "0.2em",
                     }}
                 > + Add

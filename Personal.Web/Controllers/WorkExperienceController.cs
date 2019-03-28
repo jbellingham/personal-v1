@@ -24,6 +24,7 @@ namespace Personal.Controllers
         public async Task<IActionResult> Index()
         {
             var positions = await this.DataContext.JobPositions
+                .OrderByDescending(_ => _.StartDate)
                 .Select(_ => _mapper.Map<JobPositionViewModel.Position>(_))
                 .ToListAsync();
             
