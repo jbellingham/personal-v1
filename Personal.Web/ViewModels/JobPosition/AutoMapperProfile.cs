@@ -10,7 +10,7 @@ namespace Personal.ViewModels.JobPosition
         {
             this.CreateMap<Domain.Models.JobPosition, JobPositionViewModel.Position>()
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate.ToShortDateString()))
+                .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate.ToString("MMMM yyyy")))
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom<EndDateMapper>());
         }
     }
@@ -23,7 +23,7 @@ namespace Personal.ViewModels.JobPosition
             string destMember,
             ResolutionContext context)
         {
-            return source.EndDate?.ToShortDateString();
+            return source.EndDate?.ToString("MMMM yyyy");
         }
     }
 }
