@@ -6,7 +6,9 @@ using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Newtonsoft.Json;
 using Npgsql;
+using Personal.Domain.Configuration;
 using Personal.Domain.Models;
 using StructureMap;
 
@@ -50,7 +52,6 @@ namespace Personal.Domain
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 this.MapTableNames(entity);
-                this.ConfigureInlineJsonColumns(modelBuilder, entity);
 
                 foreach (var property in entity.GetProperties())
                 {
@@ -58,12 +59,14 @@ namespace Personal.Domain
                     MapColumnNames(property);
                 }
             }
+
+            modelBuilder.ApplyConfiguration(new JobPositionConfiguration());
         }
 
         private static void AddModelEntities(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PositionTechnology>().HasKey(_ => new { _.PositionId, _.TechnologyId });
-            modelBuilder.Entity<JobPosition>();
+            modelBuilder.Entity<JobPosition>().Property(_ => _.Duties);
             modelBuilder.Entity<Technology>();
             modelBuilder.Entity<ApplicationIdentityUser>();
         }
@@ -94,39 +97,6 @@ namespace Personal.Domain
                 {
                     property.Relational().ColumnType = "citext";
                 }
-            }
-        }
-        
-        private Dictionary<Type, Dictionary<PropertyInfo, string>> inlineJsonProps
-            = new Dictionary<Type, Dictionary<PropertyInfo, string>>();
-
-        private void ConfigureInlineJsonColumns(ModelBuilder modelBuilder, IMutableEntityType entity)
-        {
-            var jsonInlineProps = entity.ClrType.GetProperties()
-                .Where(_ => _.GetCustomAttributes<InlineJsonAttribute>().Any())
-                .ToList();
-
-            if (jsonInlineProps.Count > 0)
-            {
-                this.inlineJsonProps[entity.ClrType]
-                    = new Dictionary<PropertyInfo, string>();
-            }
-
-            foreach (var prop in jsonInlineProps)
-            {
-                // Create the shadow property name
-                var shadowPropName = _nameTranslator.TranslateMemberName($"{prop.Name}Json");
-
-                // Save it for later use in `SerialiseInlineJson`
-                this.inlineJsonProps[entity.ClrType].Add(prop, shadowPropName);
-
-                // Ensure any properties marked with InlineJson are not automatically mapped.
-                modelBuilder.Entity(entity.ClrType).Ignore(prop.Name);
-
-                // Now lets create a shadow property for the JSONB Column
-                modelBuilder.Entity(entity.ClrType)
-                    .Property(typeof(string), shadowPropName)
-                    .HasColumnType("jsonb");
             }
         }
     } 

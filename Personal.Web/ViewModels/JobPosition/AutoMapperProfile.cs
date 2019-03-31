@@ -11,6 +11,7 @@ namespace Personal.ViewModels.JobPosition
             this.CreateMap<Domain.Models.JobPosition, JobPositionViewModel.Position>()
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate.ToString("MMMM yyyy")))
+                .ForMember(dest => dest.Duties, opt => opt.MapFrom(src => src.Duties.Select(_ => _.Description).ToList()))
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom<EndDateMapper>());
         }
     }

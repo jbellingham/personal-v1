@@ -15,6 +15,7 @@ namespace Personal.ViewModels.JobPosition
             public string StartDate { get; set; }
             public string EndDate { get; set; }
             public string Location { get; set; }
+            public List<string> Duties { get; set; }
         }
     }
 }

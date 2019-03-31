@@ -12,7 +12,6 @@ namespace Personal.Domain.Models
         public virtual string Location { get; set; }
         public virtual ICollection<PositionTechnology> Stack { get; set; } = new HashSet<PositionTechnology>();
         
-        [InlineJson]
         public virtual ICollection<Duty> Duties { get; set; } = new HashSet<Duty>();
         
     }
