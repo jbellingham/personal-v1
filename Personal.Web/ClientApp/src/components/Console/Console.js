@@ -26,7 +26,7 @@ export class Console extends React.Component {
         />
         <ConsoleLine
           lineTitle="jesse.interests"
-          lineDescription="['Coding', 'gaming', 'live music', 'snowboarding', 'powerlifting']"
+          lineDescription="['coding', 'gaming', 'live music', 'snowboarding', 'powerlifting']"
         />
         <ConsoleLine
           lineTitle="jesse.email"

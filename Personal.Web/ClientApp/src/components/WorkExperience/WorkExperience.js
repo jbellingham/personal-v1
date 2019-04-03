@@ -26,7 +26,7 @@ class WorkExperienceComponent extends React.Component {
     const { positions } = this.props;
     return (
         <div className="panel-inner">
-          <div className="work-experience-header">
+          <div className="panel-header">
             <h1 style={{ textAlign: "center" }}>
               Work Experience
             </h1>

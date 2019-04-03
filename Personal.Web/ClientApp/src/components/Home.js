@@ -4,6 +4,7 @@ import WorkExperience from "./WorkExperience/WorkExperience";
 import { Console } from "./Console/Console";
 import { actionCreators } from "../store/Positions";
 import {bindActionCreators} from "redux";
+import Projects from "./Projects/Projects";
 
 const Home = props => (
     <div>
@@ -22,8 +23,11 @@ const Home = props => (
                 <Console />
             </div>
         </div>
-        <div id="workHistory" className="work-experience">
+        <div id="workHistory" className="work-experience panel-container">
             <WorkExperience />
+        </div>
+        <div className="projects panel-container">
+            <Projects />
         </div>
     </div>
 );

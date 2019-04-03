@@ -1,4 +1,8 @@
 body.app {
+  h1,h2 {
+    text-align: center;
+  }
+  
   color: #e3f1ff;
   font-family: "Open Sans", sans-serif;
 
@@ -25,10 +29,14 @@ body.app {
       margin: 0 auto;
     }
   }
+  
   .work-experience {
-    background-color: #ddd;
-    padding: 5em 0 1em 0;
+    background-color: #e8c6c5;
     color: #333333;
+  }
+  
+  .panel-container {
+    padding: 5em 0 1em 0;
   }
   
   .about-me {
@@ -40,7 +48,7 @@ body.app {
     color: #333333;
   }
   
-  .work-experience-header {
+  .panel-header {
     max-width: 750px;
     margin: 0 auto;
   }
@@ -70,5 +78,49 @@ body.app {
     height: 90px;
     background-color: rgb(168, 178, 209);
     margin: 0px auto;
+  }
+  
+  .projects {
+    h2 {
+      color: #212529;
+    }
+    background-color: #eee;
+    
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+      position: relative;
+      gap: 15px 15px;
+    }
+    
+    .project-wrapper {
+      h4 {
+        text-align: left;
+      }
+      position: relative;
+      padding: 1.5em;
+      background-color: #ffffff;
+      color: #333333;
+      min-height: 250px;
+    }
+    
+    .list {
+      padding: 0;
+      list-style-type: none;
+      flex-grow: 1;
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    
+    .tech-container {
+      position: absolute;
+      bottom: 0;
+      margin-top: 20px;
+      
+      li {
+        margin-right: 1em;
+      }
+    }
   }
 }
