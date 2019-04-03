@@ -111,6 +111,10 @@ body.app {
       display: flex;
       align-items: flex-end;
       flex-wrap: wrap;
+      
+      li {
+        margin-left: 1em;
+      }
     }
     
     .tech-container {

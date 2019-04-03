@@ -16,6 +16,7 @@ export default class Projects extends React.Component {
                     <div className="project-wrapper">
                         <div className="project-links">
                             <ul className="project-links-list list" style={{justifyContent: "flex-end"}}>
+                                <li><a target="_blank" href="https://github.com/JesseBellingham/read-me-a-story"><i className="fab fa-github-square fa-2x" /></a></li>
                                 <li><a target="_blank" href="http://www.2minutestories.io/"><i className="fas fa-link fa-2x" /></a></li>
                             </ul>
                         </div>
@@ -23,6 +24,7 @@ export default class Projects extends React.Component {
                         <p>A web app utilizing the reddit API to bring a random short story from the current best.</p>
                         <ul className="tech-container list">
                             <li>NodeJS</li>
+                            <li>Heroku</li>
                             <li>Reddit API</li>
                             <li>Bootstrap CSS</li>
                         </ul>
