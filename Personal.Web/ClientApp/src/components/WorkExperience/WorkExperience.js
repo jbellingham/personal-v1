@@ -1,7 +1,7 @@
 import React from "react";
 import Position from "./Position";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../store/Positions";
+import { actionCreators } from "../../store/Positions";
 import { connect } from "react-redux";
 
 class WorkExperienceComponent extends React.Component {

@@ -6,6 +6,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Personal.Domain;
+using Personal.Domain.Models;
 using Personal.ViewModels;
 using Personal.ViewModels.JobPosition;
 

@@ -2,7 +2,7 @@ import React from "react"
 import { Stack } from "./Stack";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {actionCreators} from "../store/Stack";
+import {actionCreators} from "../../store/Stack";
 
 export class PositionComponent extends React.Component {
   static displayName = PositionComponent.name;

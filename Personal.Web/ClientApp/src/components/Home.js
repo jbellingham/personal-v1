@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import WorkExperience from "./WorkExperience";
-import { Console } from "./Console";
+import WorkExperience from "./WorkExperience/WorkExperience";
+import { Console } from "./Console/Console";
 import { actionCreators } from "../store/Positions";
 import {bindActionCreators} from "redux";
 

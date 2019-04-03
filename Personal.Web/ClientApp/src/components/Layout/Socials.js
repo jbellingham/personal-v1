@@ -1,5 +1,4 @@
 import React from "react"
-import { ConsoleLine } from "./ConsoleLine"
 
 export class Socials extends React.Component {
     static displayName = Socials.name;

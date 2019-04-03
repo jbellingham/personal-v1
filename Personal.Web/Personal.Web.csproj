@@ -23,17 +23,20 @@
         <Content Remove="$(SpaRoot)**" />
         <Content Include="ClientApp\gulpfile.js" />
         <Content Include="ClientApp\src\actions\stack.js" />
-        <Content Include="ClientApp\src\components\Console.js" />
-        <Content Include="ClientApp\src\components\ConsoleLine.js" />
-        <Content Include="ClientApp\src\components\Position.js" />
-        <Content Include="ClientApp\src\components\Socials.js" />
-        <Content Include="ClientApp\src\components\Stack.js" />
-        <Content Include="ClientApp\src\components\WorkExperience.js" />
+        <Content Include="ClientApp\src\components\Console\Console.js" />
+        <Content Include="ClientApp\src\components\Console\ConsoleLine.js" />
+        <Content Include="ClientApp\src\components\Layout\Socials.js" />
+        <Content Include="ClientApp\src\components\WorkExperience\Position.js" />
+        <Content Include="ClientApp\src\components\WorkExperience\Stack.js" />
+        <Content Include="ClientApp\src\components\WorkExperience\WorkExperience.js" />
         <Content Include="ClientApp\src\scss\main.scss" />
         <Content Include="ClientApp\src\store\Positions.js" />
         <Content Include="ClientApp\src\store\Stack.js" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="ClientApp\src\components\Layout\Layout.js" />
+        <None Include="ClientApp\src\components\Layout\NavMenu.css" />
+        <None Include="ClientApp\src\components\Layout\NavMenu.js" />
     </ItemGroup>
 
     <ItemGroup>

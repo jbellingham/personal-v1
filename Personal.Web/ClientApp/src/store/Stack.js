@@ -69,8 +69,7 @@ export const reducer = (state = initialState, action) => {
                         {
                             ..._,
                             isAddingStackItem: true
-                        } : _),// action.payload.positionId,
-                // isAddingStackItem: true
+                        } : _),
             };
         
         case saveStackItemType:

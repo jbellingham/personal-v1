@@ -13,7 +13,7 @@ export class ConsoleLine extends React.Component {
     return (
       <div style={{ margin: "1em 2em" }}>
         <p className="row code-text">>&nbsp;{lineTitle}</p>
-        {(lineLink && <a href={lineLink}>=> {lineDescription}</a>) ||
+        {(lineLink && <span>=> <a href={lineLink}>{lineDescription}</a></span>) ||
           (lineDescription && (
             <p className="row code-text" style={{ paddingLeft: "1em" }}>
               => {lineDescription}
