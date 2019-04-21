@@ -18,6 +18,7 @@ namespace Personal.ViewModels.Login
 
     public class LoginResult : UserResultBase
     {
+        public string Token { get; set; }
     }
 
     public class UpdatePassword : UserViewModelBase

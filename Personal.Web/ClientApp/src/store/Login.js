@@ -3,8 +3,9 @@ import {
     loginReceiveType
 } from "../actions/login";
 import axios from "axios";
+import {TokenManager} from "../helpers/TokenManager";
 
-const initialState = { isLoggedIn: false, isLoading: false, email: "", password: "" };
+const initialState = { isLoggedIn: false, isLoading: false, email: "", password: "", token: "" };
 
 export const actionCreators = {
     login: (loginProps) => async (dispatch) => {
@@ -14,9 +15,13 @@ export const actionCreators = {
         dispatch({ type: loginRequestType });
         
         const url = "api/login/login";
-        const response = (await axios.post(url, { email: loginProps.email, password: loginProps.password })).data;
-        
-        dispatch({ type: loginReceiveType, payload: response })
+        try {
+            const response = (await axios.post(url, { email: loginProps.email, password: loginProps.password })).data;
+            dispatch({ type: loginReceiveType, payload: response })
+        }
+        catch (Exception) {
+            dispatch({ type: loginReceiveType, payload: null })
+        }
     }
 };
 
@@ -29,6 +34,7 @@ export const reducer = (state = initialState, action) => {
             };
 
         case loginReceiveType:
+            TokenManager.setToken(action.payload.token);
             return {
                 ...state,
                 isLoggedIn: action.payload.success,

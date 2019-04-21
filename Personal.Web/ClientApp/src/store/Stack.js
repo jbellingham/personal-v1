@@ -6,6 +6,7 @@ import {
     saveStackItemFailedType
 } from "../actions/stack";
 import axios from "axios";
+import {TokenManager} from "../helpers/TokenManager";
 
 const initialState = { stacks: [], isLoading: false };
 
@@ -37,6 +38,9 @@ export const actionCreators = {
                 data: {
                     'positionId': payload.positionId,
                     'value': payload.value
+                },
+                headers: {
+                    "Authorization": `Bearer ${TokenManager.getToken()}`
                 }
             });            
         }

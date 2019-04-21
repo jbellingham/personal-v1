@@ -34,6 +34,7 @@
         <Content Include="ClientApp\src\components\WorkExperience\Position.js" />
         <Content Include="ClientApp\src\components\WorkExperience\Stack.js" />
         <Content Include="ClientApp\src\components\WorkExperience\WorkExperience.js" />
+        <Content Include="ClientApp\src\helpers\TokenManager.js" />
         <Content Include="ClientApp\src\scss\main.scss" />
         <Content Include="ClientApp\src\store\Login.js" />
         <Content Include="ClientApp\src\store\Positions.js" />

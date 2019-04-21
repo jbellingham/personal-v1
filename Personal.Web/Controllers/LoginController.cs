@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Personal.Domain;
 using Personal.Domain.Models;
+using Personal.Domain.Services.Jwt;
+using Personal.Infrastructure;
 using Personal.ViewModels.Login;
 
 namespace Personal.Controllers
@@ -12,15 +14,18 @@ namespace Personal.Controllers
     {
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
+        private readonly IJwtBuilder _jwt;
         
         public LoginController(
             DataContext dataContext,
             UserManager<ApplicationIdentityUser> userManager,
-            SignInManager<ApplicationIdentityUser> signInManager)
+            SignInManager<ApplicationIdentityUser> signInManager,
+            IJwtBuilder jwt)
             : base(dataContext)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+            _jwt = jwt ?? throw new ArgumentNullException(nameof(jwt));
         }
 
         [HttpPost]
@@ -30,11 +35,21 @@ namespace Personal.Controllers
             await _signInManager.SignOutAsync();
             var user = await _userManager.FindByEmailAsync(model.Email);
 
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true);
+            var result = await _signInManager.PasswordSignInAsync(
+                user,
+                model.Password,
+                true,
+                 true);
+            string token = null;
+            if (result.Succeeded)
+            {
+                token = _jwt.GenerateJwtToken(model.Email, user);
+            }
 
             return Ok(new LoginResult
             {
-                Success = result.Succeeded
+                Success = result.Succeeded,
+                Token = token
             });
         }
 

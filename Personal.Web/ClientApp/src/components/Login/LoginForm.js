@@ -12,14 +12,12 @@ let LoginForm = props => {
         }
         <div className="field">
             <div className="control">
-                <label className="label">Email</label>
                 <Field className="input" name="email" component="input" type="email" placeholder="Email Address"/>
             </div>
         </div>
 
         <div className="field">
             <div className="control">
-                <label className="label">Password</label>
                 <Field className="input" name="password" component="input" type="password" placeholder="Password"/>
             </div>
         </div>

@@ -1,8 +1,9 @@
 import React from "react"
+import {TokenManager} from "../../helpers/TokenManager";
 
-export class Stack extends React.Component {
+export default class Stack extends React.Component {
     static displayName = Stack.name;
-
+    
     render() {
         const {
             addStackItem,
@@ -12,6 +13,8 @@ export class Stack extends React.Component {
             isLoading,
             stack
         } = this.props;
+        
+        const isLoggedIn = TokenManager.isLoggedIn();
         
         return <React.Fragment>
             {stack &&
@@ -29,7 +32,8 @@ export class Stack extends React.Component {
                 {item.name}
               </span>
             ))}
-            {!isAddingStackItem &&
+            {isLoggedIn &&
+            !isAddingStackItem &&
                 <button
                     key={`${currentPositionId}-create-stack-item`}
                     onClick={() => addStackItem(currentPositionId)}

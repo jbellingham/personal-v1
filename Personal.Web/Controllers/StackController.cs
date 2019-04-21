@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Personal.Domain;
@@ -31,6 +32,7 @@ namespace Personal.Controllers
         }
     
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Index([FromBody] StackViewModel.Add model)
         {
             if (ModelState.IsValid)
