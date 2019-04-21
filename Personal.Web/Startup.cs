@@ -44,6 +44,12 @@ namespace Personal
 
             WebHostBuilder = new WebHostBuilder()
                 .UseConfiguration(config)
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseKestrel()
                 .UseStartup<Startup>();
@@ -55,6 +61,7 @@ namespace Personal
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure(this.AppSettings, WebHostBuilder);
+            services.AddAuth(this.AppSettings);
             
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

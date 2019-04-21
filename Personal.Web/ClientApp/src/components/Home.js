@@ -16,8 +16,7 @@ const Home = props => (
                 <h1 className="name-header" >
                     My name is Jesse
                 </h1>
-                <h2
-                    style={{ textAlign: "center", color: "grey", marginBottom: "3em" }} >
+                <h2 style={{ textAlign: "center", color: "grey", marginBottom: "3em" }} >
                     I build web applications.
                 </h2>
                 <Console />

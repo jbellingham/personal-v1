@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as Positions from './Positions';
 import * as Stack from './Stack'
+import * as Login from "./Login";
+import { reducer as formReducer } from 'redux-form';
 
 export default function configureStore (history, initialState) {
   const reducers = {
     positions: Positions.reducer,
-    stackState: Stack.reducer
+    stackState: Stack.reducer,
+    loginState: Login.reducer,
+    form: formReducer
   };
 
   const middleware = [

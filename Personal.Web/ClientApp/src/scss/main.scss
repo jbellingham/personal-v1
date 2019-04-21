@@ -30,6 +30,22 @@ body.app {
     }
   }
   
+  .login-wrapper {
+    background-color: #4a5365;
+    padding: 8em 1em;
+    min-height: -webkit-fill-available;
+
+    .form-container {
+      width: 500px;
+      clear: both;
+    }
+
+    .form-container input {
+      width: 100%;
+      clear: both;
+    }
+  }
+  
   .work-experience {
     background-color: #e8c6c5;
     color: #333333;
