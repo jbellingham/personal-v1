@@ -133,6 +133,7 @@ namespace Personal
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseAuthentication();
             app.UseMvc(
                 routes =>
                 {
