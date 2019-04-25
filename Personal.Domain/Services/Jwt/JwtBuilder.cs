@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Personal.Domain.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Personal.Domain.Services.Jwt
 {
