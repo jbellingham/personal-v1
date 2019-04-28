@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Web", "Personal.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Domain", "Personal.Domain\Personal.Domain.csproj", "{3669A579-0F86-4C34-BCBD-330C17E0918D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Personal.Docker", "Personal.Docker", "{2B38FFF3-15E2-4CE2-8B23-6A50535E57B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{5B17A019-8450-42AF-9F65-D3448FD0540B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,8 @@ Global
 		{3669A579-0F86-4C34-BCBD-330C17E0918D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3669A579-0F86-4C34-BCBD-330C17E0918D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3669A579-0F86-4C34-BCBD-330C17E0918D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B17A019-8450-42AF-9F65-D3448FD0540B} = {2B38FFF3-15E2-4CE2-8B23-6A50535E57B3}
 	EndGlobalSection
 EndGlobal

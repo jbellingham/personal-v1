@@ -1,18 +1,31 @@
-version: '2'
+version: '3.4'
 
 services:
-  app:
-    build:
-      context:  ./
-      dockerfile: Dockerfile
-  https-portal:
-    image: steveltn/https-portal:1
+  db:
+    container_name: personaldb
+    image: personal/db:latest
+    env_file: .env
+    volumes:
+      - /var/lib/postgresql/data
     ports:
-      - '80:80'
-      - '443:443'
-    links:
-      - app
+      - $POSTGRES_DEFAULT_PORT:$POSTGRES_DEFAULT_PORT
     restart: always
     environment:
-      DOMAINS: 'localhost:5001 -> http://app:5001'
-      STAGE: 'production'
+      POSTGRES_DB: $POSTGRES_DEFAULT_DB
+      POSTGRES_PASSWORD: $POSTGRES_DEFAULT_PASS
+      POSTGRES_PORT: $POSTGRES_DEFAULT_PORT
+      POSTGRES_USER: $POSTGRES_DEFAULT_USER
+  
+  web:
+    container_name: personalweb
+    image: personal/web:latest
+    build:
+      context: .
+    env_file: .env
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    command: ["./wait-for-postgres.sh", "db:5432", "--", "python", "app.py"]
+volumes:
+  db_volume:

@@ -1,4 +1,5 @@
 FROM microsoft/dotnet:sdk AS build-env
+LABEL personal="true"
 WORKDIR /app
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
@@ -13,7 +14,12 @@ RUN dotnet restore
 # Copy everything else and build
 WORKDIR /app
 COPY Personal.Web/. ./Personal.Web
-COPY Personal.Domain/. ./Personal.Domain 
+COPY Personal.Domain/. ./Personal.Domain
+
+WORKDIR /app/Personal.Domain
+RUN dotnet build
+RUN dotnet ef database update
+
 WORKDIR /app/Personal.Web
 RUN dotnet publish -c Release -o out
 

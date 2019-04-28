@@ -113,7 +113,8 @@ namespace Personal
             if (File.Exists(Path.Join(env.ContentRootPath, "appsettings.json")))
             {
                 configBuilder = configBuilder
-                    .AddJsonFile("appsettings.json", optional: false);
+                    .AddJsonFile("appsettings.json", optional: false)
+                    .AddEnvironmentVariables();
             }
 
             this.AppSettings = configBuilder.Build();
