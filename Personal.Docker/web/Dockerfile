@@ -1,24 +1,25 @@
-FROM microsoft/dotnet:sdk AS build-env
+FROM personal/dotnet:latest AS build-env
 LABEL personal="true"
 WORKDIR /app
 
+ARG CONFIGURATION="Release"
+WORKDIR /solution
+COPY --from=personal/domain:latest /solution/Personal.Domain/bin/. ./Personal.Domain/bin/
+COPY --from=personal/domain:latest /solution/Personal.Domain/obj/. ./Personal.Domain/obj/
+
+WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
 RUN apt-get install -y nodejs
 
 # Copy csproj and restore as distinct layers
 COPY Personal.Web/*.csproj ./Personal.Web/
-COPY Personal.Domain/*.csproj ./Personal.Domain/
 WORKDIR /app/Personal.Web
 RUN dotnet restore
 
+
 # Copy everything else and build
 WORKDIR /app
-COPY Personal.Web/. ./Personal.Web
-COPY Personal.Domain/. ./Personal.Domain
-
-WORKDIR /app/Personal.Domain
-RUN dotnet build
-RUN dotnet ef database update
+COPY --from=personal/dotnet:latest /solution/Personal.Web/. ./Personal.Web
 
 WORKDIR /app/Personal.Web
 RUN dotnet publish -c Release -o out
