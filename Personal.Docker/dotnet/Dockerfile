@@ -5,6 +5,6 @@ WORKDIR /solution
 COPY ./Personal.sln ./
 COPY ./Personal.Db/Personal.Db.csproj ./Personal.Db/
 COPY ./Personal.Domain/Personal.Domain.csproj ./Personal.Domain/
-COPY ./Personal.Web/Personal.Web.csproj ./Personal.Web/
+COPY ./Personal.Api/Personal.Api.csproj ./Personal.Api/
 
 RUN dotnet restore

@@ -29,7 +29,7 @@ ANEX.*[Bb]in/
 [Ll]og/
 
 # Visual Studio 2015 cache/options directory
-.vs/
+.vscode/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 ANEX.Website.ManagementPortal/wwwroot/lib/*
@@ -433,4 +433,4 @@ package-lock.json
 .idea
 
 # Ignore SPA build output
-Personal.Web/ClientApp/public
+Personal.Api/ClientApp/public

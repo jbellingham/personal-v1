@@ -1,10 +1,13 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Personal.Domain;
 
 namespace Personal.Controllers
 {
-    public class BaseController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class BaseController : ControllerBase
     {
         protected readonly DataContext DataContext;
 

@@ -28,6 +28,7 @@ namespace Personal.Controllers
             _jwt = jwt ?? throw new ArgumentNullException(nameof(jwt));
         }
 
+        [Route("/login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginViewModel model)
         {
@@ -53,6 +54,7 @@ namespace Personal.Controllers
             });
         }
 
+        [Route("/updatepassword")]
         [HttpPost]
         public async Task<IActionResult> UpdatePassword([FromBody]UpdatePassword model)
         {

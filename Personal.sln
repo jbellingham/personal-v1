@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Web", "Personal.Web\Personal.Web.csproj", "{2301B1C1-E092-4C41-B295-B210FD542F7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Api", "Personal.Api\Personal.Api.csproj", "{2301B1C1-E092-4C41-B295-B210FD542F7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Domain", "Personal.Domain\Personal.Domain.csproj", "{3669A579-0F86-4C34-BCBD-330C17E0918D}"
 EndProject

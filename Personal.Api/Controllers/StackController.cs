@@ -20,6 +20,7 @@ namespace Personal.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var positions = await this.DataContext.JobPositions
