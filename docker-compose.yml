@@ -1,31 +1,19 @@
 version: '3.4'
 
 services:
-  db:
-    container_name: personaldb
-    image: personal/db:latest
-    env_file: .env
-    volumes:
-      - /var/lib/postgresql/data
-    ports:
-      - $POSTGRES_DEFAULT_PORT:$POSTGRES_DEFAULT_PORT
-    restart: always
-    environment:
-      POSTGRES_DB: $POSTGRES_DEFAULT_DB
-      POSTGRES_PASSWORD: $POSTGRES_DEFAULT_PASS
-      POSTGRES_PORT: $POSTGRES_DEFAULT_PORT
-      POSTGRES_USER: $POSTGRES_DEFAULT_USER
-  
-  web:
-    container_name: personalweb
-    image: personal/web:latest
+  api:
+    container_name: personal
+    image: personal/api:latest
     build:
       context: .
     env_file: .env
+    expose:
+      - "5000"
+  reverseproxy:
+    build:
+      context: ./Personal.ReverseProxy
+      dockerfile: Dockerfile
     ports:
-      - "8000:80"
-    depends_on:
-      - db
-    command: ["./wait-for-postgres.sh", "db:5432", "--", "python", "app.py"]
-volumes:
-  db_volume:
+      - "80:80"
+    links:
+      - api
