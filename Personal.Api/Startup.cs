@@ -1,7 +1,6 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
-using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -10,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Personal.Infrastructure;
 using StructureMap;
@@ -32,6 +30,10 @@ namespace Personal
             {
                 configBuilder = configBuilder
                     .AddJsonFile("appsettings.json", optional: false);
+            }
+            else
+            {
+                configBuilder = configBuilder.AddSystemsManager("/personal");
             }
 
             this.AppSettings = configBuilder.Build();

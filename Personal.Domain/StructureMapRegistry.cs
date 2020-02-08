@@ -41,7 +41,7 @@ namespace Personal.Domain
 
                 if (appSettings != null)
                 {
-                    var cs = appSettings["ConnectionStrings:(default)"];
+                    var cs = appSettings["ConnectionStrings:Personal.Db.Rds"];
                     if (string.IsNullOrWhiteSpace(cs)) cs = ".";
                     builder.UseNpgsql(cs, o => o.UseNetTopologySuite());
                 }
