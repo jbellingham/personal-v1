@@ -7,11 +7,11 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS dotnet-build-env
 WORKDIR /src
 COPY . .
 RUN dotnet restore
-WORKDIR "/src/Personal.Api"
+WORKDIR /src/Personal.Api
 RUN dotnet build "Personal.Api.csproj" -c Release -o /app
 
 FROM dotnet-build-env AS publish
-WORKDIR "/src/Personal.Api"
+WORKDIR /src/Personal.Api
 RUN dotnet publish "Personal.Api.csproj" -c Release -o /app
 
 FROM base AS final
