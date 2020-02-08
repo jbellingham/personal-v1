@@ -3,7 +3,7 @@ version: '3.4'
 services:
   api:
     container_name: personal
-    image: personal/api:latest
+    image: personal-api:latest
     build:
       context: .
     env_file: .env
