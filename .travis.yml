@@ -1,13 +1,13 @@
 os: linux
 dist: trusty
 addons:
-  snaps:
-    - name: dotnet-sdk
-    classic: true
-    channel: latest/beta
   apt:
     packages:
       - docker-ce
+  snaps:
+  - name: dotnet-sdk
+    classic: true
+    channel: latest/beta
 sudo: required
 language: csharp
 mono: none
