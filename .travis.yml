@@ -1,22 +1,18 @@
 os: linux
-dist: trusty
+dist: xenial
 addons:
   apt:
     packages:
       - docker-ce
       - python3
-  snaps:
-  - name: dotnet-sdk
-    classic: true
-    channel: latest/beta
 sudo: required
 language: csharp
 mono: none
 env: DOTNETCORE=1
+dotnet: 3.1
 services:
   - docker
 script:
-  - sudo snap alias dotnet-sdk.dotnet dotnet
   - chmod +x ./deploy-envs.sh
   - chmod +x ./scripts/build.sh
   - chmod +x ./scripts/deploy.sh
