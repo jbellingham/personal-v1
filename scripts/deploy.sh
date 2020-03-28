@@ -9,6 +9,10 @@ export ECS_TASK=$IMAGE_NAME-task
 sudo apt-get install jq -y #install jq for json parsing
 sudo apt-get install gettext -y 
 pip install --user awscli # install aws cli w/o sudo
+sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+sudo chmod +x /usr/local/bin/ecs-cli
+ecs-cli --version
+ecs-cli configure profile --profile-name personal-app --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
 export PATH=$PATH:$HOME/.local/bin # put aws in the path
 
 # replace environment variables in task-definition
