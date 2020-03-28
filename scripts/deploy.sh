@@ -7,7 +7,8 @@ export ECS_TASK=$IMAGE_NAME-task
 
 # install dependencies
 sudo apt-get install jq -y #install jq for json parsing
-sudo apt-get install gettext -y 
+sudo apt-get install gettext -y
+pip install --upgrade pip
 pip install --user awscli # install aws cli w/o sudo
 sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
 sudo chmod +x /usr/local/bin/ecs-cli
@@ -26,7 +27,7 @@ else
     echo "ECS Repository doesn't exist, Creating $IMAGE_NAME ..."
     aws ecr create-repository --repository-name $IMAGE_NAME
 fi
-
+echo $IMAGE_VERSION
 docker push $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:$IMAGE_VERSION
 
 aws ecs register-task-definition --cli-input-json file://new-task-definition.json --region $AWS_DEFAULT_REGION > /dev/null # Create a new task revision
