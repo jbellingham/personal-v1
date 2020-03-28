@@ -1,12 +1,10 @@
 os: linux
 dist: trusty
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install python3
 addons:
   apt:
     packages:
       - docker-ce
+      - python3
   snaps:
   - name: dotnet-sdk
     classic: true
